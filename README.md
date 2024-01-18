@@ -70,4 +70,4 @@ ffmpeg vajag pievienot PATH vai ielikt folderī, kurā atrodas python.exe (it ī
 5. Gaidīt, kamēr izvades fails tiek izveidots
 
 ## Video piemērs
-> https://streamable.com/9lyrkw
+**https://streamable.com/9lyrkw**
