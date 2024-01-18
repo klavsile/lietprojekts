@@ -6,6 +6,8 @@ from tkinter import filedialog as fd
 
 import ffmpeg
 
+from datetime import datetime
+
 root = tk.Tk()
 root.title('Projekts')
 root.resizable(False, False)
@@ -28,13 +30,30 @@ def OpenFile(output):
     ConvertFile(videoDir, output)
 
 def ConvertFile(dir, output):
-            
+    w = Entry1.get()
+    h = Entry2.get()
+    if w == "" or h == "":
+        width = ""
+        height = ""
+    else:
+        width = int ( ''.join(filter(str.isdigit, w) ) )
+        height = int ( ''.join(filter(str.isdigit, h) ) )
+    time = datetime.now().strftime("%H-%M-%S")
     dir_path = os.path.dirname(os.path.realpath(__file__))
-    (
-        ffmpeg.input(dir)
-        .output(dir_path + "/output" + output)
-        .run()
-    )
+    if width == "" or height == "":
+        (
+            ffmpeg.input(dir)
+            .output(dir_path + "/output-" + time + output)
+            .run()
+        )
+    else:
+        print(str(width)+"*"+str(height))
+        (
+            ffmpeg.input(dir)
+            .filter("scale", str(width)+"*"+str(height))
+            .output(dir_path + "/output-" + time + output)
+            .run()
+        )
 
 roboto12 = font.Font(family='Roboto', size=12, weight='bold')
 
@@ -95,7 +114,7 @@ ConvertToGif = tk.Button(
     fg=colors["text"],
     command=lambda: OpenFile(".gif")
 )
-ConvertToGif.place(x=80, y=100)
+ConvertToGif.place(x=80, y=140)
 
 ConvertToMp4 = tk.Button(
     root,
@@ -107,7 +126,7 @@ ConvertToMp4 = tk.Button(
     fg=colors["text"],
     command=lambda: OpenFile(".mp4")
 )
-ConvertToMp4.place(x=80, y=180)
+ConvertToMp4.place(x=80, y=220)
 
 ConvertToMov = tk.Button(
     root,
@@ -119,6 +138,6 @@ ConvertToMov = tk.Button(
     fg=colors["text"],
     command=lambda: OpenFile(".mov")
 )
-ConvertToMov.place(x=80, y=260)
+ConvertToMov.place(x=80, y=300)
 
 root.mainloop()
