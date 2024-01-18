@@ -68,3 +68,6 @@ ffmpeg vajag pievienot PATH vai ielikt folderī, kurā atrodas python.exe (it ī
 3. Nospiest pogu vēlamajam izvades formātam
 4. Izvēlēties ievades failu
 5. Gaidīt, kamēr izvades fails tiek izveidots
+
+## Video piemērs
+https://streamable.com/9lyrkw
